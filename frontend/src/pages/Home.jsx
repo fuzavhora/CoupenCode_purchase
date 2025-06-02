@@ -44,7 +44,8 @@ export default function Home() {
               >
                 <div className="overflow-hidden">
                   <img
-                    src={`http://localhost:5000/uploads/${p.image}`}
+                    src={`${import.meta.env.VITE_IMAGE_UPLOAD_URL}/uploads/${p.image}`}
+
                     alt={p.name}
                     className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300"
                   />
