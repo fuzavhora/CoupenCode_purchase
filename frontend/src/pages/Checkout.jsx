@@ -5,13 +5,11 @@ import { useCart } from "../context/CardContext";
 import { toast } from "react-toastify";
 import axios from "../api/axios";
 
-
 export default function Checkout() {
   const { cart, clearCart, removeFromCart } = useCart();
   const navigate = useNavigate();
 
   console.log("Script : ", import.meta.env.PAYPAL_CLIENT_ID);
-
 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -102,10 +100,11 @@ export default function Checkout() {
           }}
           placeholder="Enter your email"
           disabled={loading}
-          className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2 ${error
-            ? "border-red-500 focus:ring-red-400"
-            : "border-gray-300 focus:ring-blue-400"
-            }`}
+          className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2 ${
+            error
+              ? "border-red-500 focus:ring-red-400"
+              : "border-gray-300 focus:ring-blue-400"
+          }`}
         />
         {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
       </div>
@@ -124,8 +123,9 @@ export default function Checkout() {
                 className="flex items-center gap-4 border p-4 rounded-lg shadow-sm hover:shadow-md transition"
               >
                 <img
-                  src={`${import.meta.env.VITE_IMAGE_UPLOAD_URL}/uploads/${item.image}`}
-
+                  src={`${import.meta.env.VITE_IMAGE_UPLOAD_URL}/uploads/${
+                    item.image
+                  }`}
                   alt={item.name}
                   className="w-16 h-16 object-cover rounded"
                 />
@@ -163,12 +163,13 @@ export default function Checkout() {
             )}
             <PayPalScriptProvider
               options={{
-                "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID || "fallback-client-id",
+                "client-id":
+                  import.meta.env.VITE_PAYPAL_CLIENT_ID ||
+                  "ARPnaKmGFkoh_XuUrq4gHfKeMI2zNrT2lcPbQ6-ZeZWmHQzMl84w4neNpG1Wjf2nT69yYgeySzVdE1Dh",
                 currency: "USD",
                 vault: true,
                 intent: "capture",
               }}
-
             >
               <PayPalButtons
                 style={{ layout: "vertical", label: "paypal" }}
